@@ -57,6 +57,7 @@ namespace TestePrazo.Controllers
 
             var model = new IndexViewModel
             {
+                Nome = user.Nome,
                 Username = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
@@ -85,7 +86,7 @@ namespace TestePrazo.Controllers
             var nome = user.Nome;
             if (model.Nome != nome)
             {
-                var setNomeResult = await _userManager.(user, model.Nome);
+                var setNomeResult = await _userManager.SetEmailAsync(user, model.Nome);
                 if (!setNomeResult.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
@@ -137,7 +138,7 @@ namespace TestePrazo.Controllers
             var email = user.Email;
             await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Email de verificação enviado. Por favor cheque seu email.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -183,8 +184,8 @@ namespace TestePrazo.Controllers
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("Usuário mudou sua senha corretamente.");
+            StatusMessage = "Sua senha foi alterada.";
 
             return RedirectToAction(nameof(ChangePassword));
         }
@@ -232,7 +233,7 @@ namespace TestePrazo.Controllers
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            StatusMessage = "Your password has been set.";
+            StatusMessage = "Sua senha foi definida.";
 
             return RedirectToAction(nameof(SetPassword));
         }
@@ -293,7 +294,7 @@ namespace TestePrazo.Controllers
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            StatusMessage = "The external login was added.";
+            StatusMessage = "O login externo foi adicionado.";
             return RedirectToAction(nameof(ExternalLogins));
         }
 
@@ -314,7 +315,7 @@ namespace TestePrazo.Controllers
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            StatusMessage = "The external login was removed.";
+            StatusMessage = "O login externo foi removido.";
             return RedirectToAction(nameof(ExternalLogins));
         }
 
@@ -413,13 +414,13 @@ namespace TestePrazo.Controllers
 
             if (!is2faTokenValid)
             {
-                ModelState.AddModelError("Code", "Verification code is invalid.");
+                ModelState.AddModelError("Code", "Código de verificação inválido.");
                 await LoadSharedKeyAndQrCodeUriAsync(user, model);
                 return View(model);
             }
 
             await _userManager.SetTwoFactorEnabledAsync(user, true);
-            _logger.LogInformation("User with ID {UserId} has enabled 2FA with an authenticator app.", user.Id);
+            _logger.LogInformation("Usuário de ID {UserId} ativou 2FA com um aplicativo autenticador.", user.Id);
             var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
             TempData[RecoveryCodesKey] = recoveryCodes.ToArray();
 

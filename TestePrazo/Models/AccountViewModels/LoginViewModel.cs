@@ -14,9 +14,10 @@ namespace TestePrazo.Models.AccountViewModels
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Lembrar?")]
         public bool RememberMe { get; set; }
     }
 }
