@@ -8,6 +8,7 @@ namespace TestePrazo.Models.ManageViewModels
 {
     public class IndexViewModel
     {
+        public string Nome { get; set; }
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }

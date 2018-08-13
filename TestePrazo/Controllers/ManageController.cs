@@ -82,6 +82,17 @@ namespace TestePrazo.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            var nome = user.Nome;
+            if (model.Nome != nome)
+            {
+                var setNomeResult = await _userManager.(user, model.Nome);
+                if (!setNomeResult.Succeeded)
+                {
+                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
+                }
+            }
+
+
             var email = user.Email;
             if (model.Email != email)
             {

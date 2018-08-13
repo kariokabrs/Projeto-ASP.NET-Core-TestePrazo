@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-TestePrazo-FC91F10C-CAE1-48FC-8DCE-D66901733FD8</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20180813104847_Name.cs" />
+    <Compile Remove="Data\Migrations\20180813104847_Name.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
