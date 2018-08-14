@@ -85,6 +85,7 @@ namespace TestePrazo.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            // alterado para incluir o nome do usuario
             var nome = user.Nome;
             if (model.Nome != nome)
             {

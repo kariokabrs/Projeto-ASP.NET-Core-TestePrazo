@@ -11,6 +11,13 @@
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Oi @UserManager.GetUserName(User)!</a>
             </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @if (User.IsInRole("Admin"))
+                {
+                    <li><a asp-area="" asp-controller="Account" asp-action="Register">Registrar</a></li>
+                }
+            }
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
             </li>
@@ -20,7 +27,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Account" asp-action="Register">Registrar</a></li>
+
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
     </ul>
 }

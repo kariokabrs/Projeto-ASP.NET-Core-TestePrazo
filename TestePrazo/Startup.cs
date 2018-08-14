@@ -146,7 +146,6 @@ namespace TestePrazo
             Boolean checkRoleUsuarioBasico = await RoleManager.RoleExistsAsync("UsuarioBasico");
             if (!checkRoleAdmin)
             {
-
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
             if (!checkRoleUsuarioBasico)
@@ -154,7 +153,7 @@ namespace TestePrazo
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("UsuarioBasico"));
             }
 
-            ApplicationUser user = await UserManager.FindByEmailAsync("kariokabrs@msn.com");
+            ApplicationUser user = await UserManager.FindByEmailAsync("admin@admin.com");
             var User = new ApplicationUser();
             await UserManager.AddToRoleAsync(user, "Admin");
         }
