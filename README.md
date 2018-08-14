@@ -3,6 +3,7 @@
 
 ## Arquitetura e info técnicas ##
 
+* Tempo de realização do Projeto: 1 dia;
 * Uso do Visual Studio 2017;
 * Versão CORE 2.0
 * MVC;
