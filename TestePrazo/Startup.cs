@@ -33,13 +33,9 @@ namespace TestePrazo
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDataProtection().SetDefaultKeyLifetime(TimeSpan.FromDays(30)); // nao pode ser menos que uma semana. 
-            // pegar minmha chave encriptografada e ver o tpo de algoritimo usado na segurança;
+            services.AddDataProtection().SetDefaultKeyLifetime(TimeSpan.FromDays(30));
             services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(@"c:\"));
 
-            //services.AddScoped<IDataProtector>();
-
-            // EF DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped);
 
@@ -66,7 +62,7 @@ namespace TestePrazo
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1); //default 30
                 options.Lockout.MaxFailedAccessAttempts = 3; // default 10
                 options.Lockout.AllowedForNewUsers = true;
-
+ 
                 // User settings
                 options.User.RequireUniqueEmail = true;
             });
@@ -82,17 +78,14 @@ namespace TestePrazo
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
             });
-
             // end Identity
 
             // policy e Roles
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("RequerAdmin", policy => policy.RequireRole("Admin")); // o nome do Role conforme BD
+                options.AddPolicy("RequerAdmin", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("SoBanBanBan", policy => policy.RequireRole("Admin", "GodUser", "BackupAdmin"));
-                // options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-                // options.AddPolicy("Founders", policy => policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
-                options.AddPolicy("AtLeast21", policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
+                //options.AddPolicy("AtLeast21", policy => policy.Requirements.Add(new IdadeRequirement(21)));
             });
 
             services.AddTransient<IEmailSender, EmailSender>();
@@ -114,7 +107,6 @@ namespace TestePrazo
             }
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
 
             app.UseMvc(routes =>
@@ -127,14 +119,11 @@ namespace TestePrazo
             Task.Run(() => CreateUserRoles(services));
         }
 
-        // decrypt cookie
         private IEnumerable<Claim> GetClaimFromCookie(HttpContext httpContext, string cookieName, string cookieSchema)
         {
-            // Get the encrypted cookie value
             var opt = httpContext.RequestServices.GetRequiredService<IOptionsMonitor<CookieAuthenticationOptions>>();
             var cookie = opt.CurrentValue.CookieManager.GetRequestCookie(httpContext, cookieName);
 
-            // Decrypt if found
             if (!string.IsNullOrEmpty(cookie))
             {
                 var dataProtector = opt.CurrentValue.DataProtectionProvider.CreateProtector("Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware", cookieSchema, "v2");
@@ -157,29 +146,27 @@ namespace TestePrazo
             Boolean checkRoleUsuarioBasico = await RoleManager.RoleExistsAsync("UsuarioBasico");
             if (!checkRoleAdmin)
             {
-                //criar o role Admin
+
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
             if (!checkRoleUsuarioBasico)
             {
-                //criar o role UsuarioBasico
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("UsuarioBasico"));
             }
-            //Assign Admin role to the main User here we have given our newly registered 
-            //login id for Admin management
+
             ApplicationUser user = await UserManager.FindByEmailAsync("kariokabrs@msn.com");
             var User = new ApplicationUser();
             await UserManager.AddToRoleAsync(user, "Admin");
         }
     }
-    // custom policy
-    public class MinimumAgeRequirement : IAuthorizationRequirement
-    {
-        public int MinimumAge { get; private set; }
 
-        public MinimumAgeRequirement(int minimumAge)
+    public class IdadeRequirement : IAuthorizationRequirement
+    {
+        public int IdadeMinima { get; private set; }
+
+        public IdadeRequirement(int idadeMinima)
         {
-            MinimumAge = minimumAge;
+            IdadeMinima = idadeMinima;
         }
     }
 }

@@ -88,7 +88,8 @@ namespace TestePrazo.Controllers
             var nome = user.Nome;
             if (model.Nome != nome)
             {
-                var setNomeResult = await _userManager.SetEmailAsync(user, model.Nome);
+                user.Nome = model.Nome;
+                var setNomeResult = await _userManager.UpdateAsync(user);
                 if (!setNomeResult.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
@@ -116,7 +117,7 @@ namespace TestePrazo.Controllers
                 }
             }
 
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Seu profile foi atualizado";
             return RedirectToAction(nameof(Index));
         }
 
