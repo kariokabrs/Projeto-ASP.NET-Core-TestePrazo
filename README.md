@@ -6,8 +6,11 @@
 * Uso do Visual Studio 2017;
 * Versão CORE 2.0
 * MVC;
-* Separation of Concerns.
-* Uso do Identity.
+* Separation of Concerns;
+* Pattern Async Task;
+* Strongly Typed;
+* DTO´s;
+* Uso do Identity 3.0.
 * Linguagem C#;
 * Dependency Injection pattern;
 * Uso de Bind como parâmetro dos métodos do Controller para evitar Over-posting;
@@ -38,6 +41,8 @@
 * O usuário pode trocar sua senha também na mesma tela clicando em Oi 'usuario' e depois em Senha no menu à esquerda;
 * A senha é hashed no Banco de Dados na Tabela de AspNetUsers;
 * O id do usuário é GUID.
+* Usuário inativo por 10 minutos é redirecionado para Login novamente;
+* Após 3 tentativas o usuário é bloqueado e deve aguardar 1 minuto para nova 3 tentativas de logar. 
 
 ## Roles ##
 
