@@ -18,11 +18,13 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace TestePrazo
 {
     public class Startup
     {
+        private readonly RandomNumberGenerator _rng;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -156,6 +158,11 @@ namespace TestePrazo
             }
 
             ApplicationUser user = await UserManager.FindByEmailAsync("admin@admin.com");
+            if (user == null)
+            {
+                ApplicationUser novoUsuario = new ApplicationUser { Nome = "admin", UserName = "admin", Email = "admin@admin.com" };
+                await UserManager.CreateAsync(user, "admin");
+            }
             var User = new ApplicationUser();
             await UserManager.AddToRoleAsync(user, "Admin");
         }
