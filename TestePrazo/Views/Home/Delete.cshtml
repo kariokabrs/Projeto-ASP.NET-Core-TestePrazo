@@ -6,7 +6,7 @@
 
 <h2>Tarefas</h2>
 <p class="text-danger">@ViewData["ErrorMessage"]</p>
-<h3>Deseja deletar esse registro?</h3>
+<h3>Deletar</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -23,10 +23,34 @@
             @Html.DisplayFor(model => model.Completa)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+
+        <button type="button" class="btn btn-danger btn-sm" data-item-id="@Model.Id" data-toggle="modal" data-target="#confirm-delete">Deletar</button>
+
+        @*<input type="submit" value="Delete" class="btn btn-default" />*@
+
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Confirmar operação</h4>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja deletar?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
+                        <input type="submit" value="Deletar" class="btn btn-danger" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <a asp-action="Tarefa">Voltar a lista</a>
     </form>
+
 </div>
