@@ -16,17 +16,20 @@ namespace TestePrazo.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
+        private readonly RoleManager<IdentityRole> _userRoleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
+            RoleManager<IdentityRole> userRoleManager,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
+            _userRoleManager = userRoleManager;
             _userManager = userManager;
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
             _emailSender = emailSender;
@@ -218,11 +221,12 @@ namespace TestePrazo.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Nome = model.Nome , UserName = model.Nome, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                ApplicationUser user = new ApplicationUser { Nome = model.Nome, UserName = model.Nome, Email = model.Email };
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuário criou uma conta com senha.");
+                    await _userManager.AddToRoleAsync(user, "usuarioBasico");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);

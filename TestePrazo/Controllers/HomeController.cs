@@ -36,8 +36,10 @@ namespace TestePrazo.Controllers
         {
             ModelState.Clear();
 
-            TarefaDTO dto = new TarefaDTO();
-            dto.Items = await servico.ReadAllAsync();
+            TarefaDTO dto = new TarefaDTO
+            {
+                Items = await servico.ReadAllAsync()
+            };
 
             //List<ProtectModel> protect = new List<ProtectModel>();
 
