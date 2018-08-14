@@ -43,3 +43,11 @@
 
 * Admin;
 * UsuarioBasico.
+
+## Telas ##
+
+* Home ( visto por todos usuários logados ou não );
+* Tarefas ( visto pelos usuários logados );
+* Login ( visto por todos usuários não logados );
+* Alterar Dados da Conta ( visto por todos usuários logados );
+* Registrar ( visto pelo usuario 'admin' - conforme explicado no teste onde o usuário básico verá apenas a tela de Tarefas ).
