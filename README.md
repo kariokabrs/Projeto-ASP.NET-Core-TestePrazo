@@ -27,6 +27,7 @@
 * Uso de Partial Viewss com Razor Views;
 * Expressões Lamba com LINQ;
 * Interpolação de String: $.
+* URL QueryString criptogrfada: Não ( não requerida no teste )
 
 ## Sobre o Identity - Registrar usuário ##
 
