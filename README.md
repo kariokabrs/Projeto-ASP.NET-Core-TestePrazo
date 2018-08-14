@@ -32,3 +32,5 @@
 * Para logar não é necessário, nessa configuração, que seja o email obirgatório. Foi definido o nome do usuário;
 * A confirmação de email não foi ativa por não constar no teste;
 * O login de thrid parties, como facebook, não foi ativado por não constar no teste;
+* O usuário clicando em Oi 'usuario' pode alterar seus dados como nome, telefone e email;
+* O usuário pode trocar sua senha também na mesma tela clicando em Oi 'usuario' e depois em Senha no menu à esquerda.
