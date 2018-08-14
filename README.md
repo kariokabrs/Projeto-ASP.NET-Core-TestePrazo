@@ -1,7 +1,8 @@
 
-# Projet-ASP.NET-Core-2.0 TestePrazo #
+# Projet-ASP.NET-Core-TestePrazo #
 
 * Uso do Visual Studio 2017;
+* Versão CORE 2.0
 * MVC;
 * Separation of Concerns.
 * Uso do Identity.
