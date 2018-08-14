@@ -34,4 +34,10 @@
 * O login de thrid parties, como facebook, não foi ativado por não constar no teste;
 * O usuário clicando em Oi 'usuario' pode alterar seus dados como nome, telefone e email;
 * O usuário pode trocar sua senha também na mesma tela clicando em Oi 'usuario' e depois em Senha no menu à esquerda;
-* A senha é hashed no Banco de Dados na Tabela de AspNetUsers.
+* A senha é hashed no Banco de Dados na Tabela de AspNetUsers;
+* O id do usuário é GUID.
+
+## Roles ##
+
+* Admin;
+* UsuarioBasico.
