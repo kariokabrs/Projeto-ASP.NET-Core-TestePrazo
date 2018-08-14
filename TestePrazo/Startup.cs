@@ -30,7 +30,6 @@ namespace TestePrazo
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -43,7 +42,7 @@ namespace TestePrazo
             // EF DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped);
-      
+
             // Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -52,7 +51,7 @@ namespace TestePrazo
                 options.SignIn.RequireConfirmedPhoneNumber = false;
 
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-           
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -64,8 +63,8 @@ namespace TestePrazo
                 options.Password.RequiredUniqueChars = 0;
 
                 // Lockout settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1); //default lockout 30 minutos
-                options.Lockout.MaxFailedAccessAttempts = 1; // default 10
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1); //default 30
+                options.Lockout.MaxFailedAccessAttempts = 3; // default 10
                 options.Lockout.AllowedForNewUsers = true;
 
                 // User settings
@@ -77,7 +76,7 @@ namespace TestePrazo
                 // Cookie settings
                 options.Cookie.Name = "YourAppCookieName";
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
                 options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
@@ -101,7 +100,6 @@ namespace TestePrazo
             services.AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())

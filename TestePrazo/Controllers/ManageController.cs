@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -9,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using TestePrazo.Models;
 using TestePrazo.Models.ManageViewModels;
 using TestePrazo.Services;
@@ -20,6 +18,10 @@ namespace TestePrazo.Controllers
     [Route("[controller]/[action]")]
     public class ManageController : Controller
     {
+        /// <summary>
+        /// Controle do gerenciamento de login do Identity
+        /// </summary>
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;

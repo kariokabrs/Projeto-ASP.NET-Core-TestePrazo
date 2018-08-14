@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using TestePrazo.Models;
 
@@ -38,22 +37,15 @@ namespace TestePrazo.Controllers
             return View();
         }
 
-        [Authorize(Policy = "RequerAdmin")]
-        public IActionResult About()
+        [Authorize]
+        public IActionResult Tarefa()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Tarefas";
 
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
+         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
