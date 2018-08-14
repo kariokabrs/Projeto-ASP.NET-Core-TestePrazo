@@ -1,6 +1,8 @@
 
 # Projet-ASP.NET-Core-TestePrazo #
 
+## Arquitetura e info técnicas ##
+
 * Uso do Visual Studio 2017;
 * Versão CORE 2.0
 * MVC;
@@ -23,7 +25,7 @@
 * Expressões Lamba com LINQ;
 * Interpolação de String: $.
 
-# Sobre o Identity - Registrar usuário #
+## Sobre o Identity - Registrar usuário ##
 
 * Pode ter a partir de cinco letras para usuario podendo ser minúsculo e/ou maiúsculas;
 * Pode ter a partir de cinco letras para senha;
