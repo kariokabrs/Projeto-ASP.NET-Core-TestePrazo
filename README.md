@@ -11,8 +11,7 @@
 * Uso do Code First / EF Core / Migrations;
 * Uso de Bando de dados SQL Server;
 * Classe de validação dos modelos personalizada;
-* Uso do Font-Awesome;
-* Uso de BootStrap;
+* Uso de BootStrap template do Visual Studio;
 * CSS , HTML e JS;
 * JQuery/Ajax;
 * Página de Erro personalizada;
