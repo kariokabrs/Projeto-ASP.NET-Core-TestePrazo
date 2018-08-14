@@ -5,8 +5,8 @@ namespace TestePrazo.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "O nome é requerido")]
-        [Display(Name = "Nome")]
-        [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caractere", MinimumLength = 6)]
+        [Display(Name = "Usuario")]
+        [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caractere", MinimumLength = 5)]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "O email é requerido")]
@@ -15,7 +15,7 @@ namespace TestePrazo.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "A senha é requerida")]
-        [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caractere", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caractere", MinimumLength = 5)]
         [DataType(DataType.Password)]
         [Display(Name = "Senha")]
         public string Password { get; set; }

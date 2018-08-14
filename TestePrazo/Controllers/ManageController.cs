@@ -96,7 +96,6 @@ namespace TestePrazo.Controllers
                 }
             }
 
-
             var email = user.Email;
             if (model.Email != email)
             {

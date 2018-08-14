@@ -59,7 +59,7 @@ namespace TestePrazo.Controllers
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
 
                 // serialize a principal
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuário logado.");

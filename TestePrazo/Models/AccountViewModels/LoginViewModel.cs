@@ -4,9 +4,13 @@ namespace TestePrazo.Models.AccountViewModels
 {
     public class LoginViewModel
     {
+
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Usuario")]
+        public string Username { get; set; }
+        //[Required]
+        //[EmailAddress]
+        //public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
