@@ -2,7 +2,9 @@
 # Projet-ASP.NET-Core-2.0 WebAPP #
 
 * Uso do Visual Studio 2017;
-* Uso do Identity
+* MVC;
+* Separation of Concerns.
+* Uso do Identity.
 * Linguagem C#;
 * Dependency Injection pattern;
 * Uso de Bind como parâmetro dos métodos do Controller para evitar Over-posting;
