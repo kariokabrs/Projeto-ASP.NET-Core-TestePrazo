@@ -32,7 +32,7 @@
 
 * Pode ter a partir de cinco letras para usuario podendo ser minúsculo e/ou maiúsculas;
 * Pode ter a partir de cinco letras para senha;
-* Já existe um usuario 'admin' senha 'admin' cadastrado conforme requerido no teste e o único Adminstrador do Sistema a incluir outros usuários conforme o teste;
+* Já existe um usuario 'admin' senha 'admin' cadastrado conforme requerido no teste e o único Adminstrador do Sistema a incluir outros usuários, mas caso esteja instalado em outro sistema, por ser code first, no midlleware um novo usuario admin será criado. 
 * A política da senha está configurada para aceitar qualquer tipo de senha sem necessidade de letras maiúsculas, dígitos e caracteres especias;
 * Para logar não é necessário, nessa configuração, que seja o email obirgatório. Foi definido o nome do usuário;
 * A confirmação de email não foi ativa por não constar no teste;
