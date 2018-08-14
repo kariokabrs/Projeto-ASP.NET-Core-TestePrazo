@@ -6,8 +6,11 @@
 * Uso do Visual Studio 2017;
 * Versão CORE 2.0
 * MVC;
-* Separation of Concerns.
-* Uso do Identity.
+* Separation of Concerns;
+* Pattern Async Task;
+* Strongly Typed;
+* DTO´s;
+* Uso do Identity 3.0.
 * Linguagem C#;
 * Dependency Injection pattern;
 * Uso de Bind como parâmetro dos métodos do Controller para evitar Over-posting;
