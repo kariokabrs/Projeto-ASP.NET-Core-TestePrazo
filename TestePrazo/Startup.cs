@@ -89,6 +89,7 @@ namespace TestePrazo
             });
 
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<ITarefaService, TarefaService>();
 
             services.AddMvc();
         }

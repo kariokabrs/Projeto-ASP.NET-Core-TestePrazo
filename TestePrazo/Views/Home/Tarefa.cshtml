@@ -1,0 +1,63 @@
+﻿@model TestePrazo.DTO.TarefaDTO
+
+@{
+    ViewData["Title"] = "Tarefas";
+}
+
+<h2>Tarefas</h2>
+
+<p>
+    <a asp-action="AddTarefa">Nova Tarefa</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Completa
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+
+            @if (item.Completa)
+            {
+                <tr style="background-color:whitesmoke">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Completa)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Completa)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>

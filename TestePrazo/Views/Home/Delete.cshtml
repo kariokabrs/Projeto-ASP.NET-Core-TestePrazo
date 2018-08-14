@@ -1,0 +1,32 @@
+﻿@model TestePrazo.Domain.Tarefa
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Tarefas</h2>
+<p class="text-danger">@ViewData["ErrorMessage"]</p>
+<h3>Deseja deletar esse registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Completa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Completa)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Tarefa">Voltar a lista</a>
+    </form>
+</div>

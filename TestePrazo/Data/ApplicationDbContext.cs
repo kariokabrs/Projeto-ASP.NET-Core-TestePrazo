@@ -18,6 +18,8 @@ namespace TestePrazo.Data
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<TestePrazo.Models.TarefaViewModel> TarefaViewModel { get; set; }
     }
 
 }
