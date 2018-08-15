@@ -23,7 +23,7 @@ namespace TestePrazo
 {
     public class Startup
     {
-       
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -63,7 +63,7 @@ namespace TestePrazo
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1); //default 30
                 options.Lockout.MaxFailedAccessAttempts = 3; // default 10
                 options.Lockout.AllowedForNewUsers = true;
- 
+
                 // User settings
                 options.User.RequireUniqueEmail = true;
             });
@@ -160,10 +160,9 @@ namespace TestePrazo
             if (user == null)
             {
                 ApplicationUser novoUsuario = new ApplicationUser { Nome = "admin", UserName = "admin", Email = "admin@admin.com" };
-                await UserManager.CreateAsync(user, "admin");
+                await UserManager.CreateAsync(novoUsuario, "admin");
+                await UserManager.AddToRoleAsync(novoUsuario, "Admin");
             }
-            ApplicationUser userRole = new ApplicationUser();
-            await UserManager.AddToRoleAsync(userRole, "Admin");
         }
     }
 

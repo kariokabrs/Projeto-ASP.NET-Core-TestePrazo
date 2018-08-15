@@ -31,6 +31,12 @@
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Roles"></label>
+                <select asp-for="Roles" asp-items="@Model.RolesList" class="form-control btn btn-default dropdown-toggle">
+                 </select>
+            </div>
+            
             <button type="submit" class="btn btn-default">Registrar</button>
         </form>
     </div>

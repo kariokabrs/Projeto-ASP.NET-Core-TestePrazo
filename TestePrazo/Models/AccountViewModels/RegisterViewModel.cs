@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestePrazo.Models.AccountViewModels
 {
@@ -24,5 +26,8 @@ namespace TestePrazo.Models.AccountViewModels
         [Display(Name = "Confirmação da senha")]
         [Compare("Password", ErrorMessage = "A senha e a confirmação da senha não são iguais.")]
         public string ConfirmPassword { get; set; }
+
+         public string Roles{ get; set; }
+        public List<SelectListItem> RolesList { get; set; }
     }
 }

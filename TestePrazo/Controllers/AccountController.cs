@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using TestePrazo.Models;
 using TestePrazo.Models.AccountViewModels;
@@ -210,7 +214,19 @@ namespace TestePrazo.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+
+            RegisterViewModel model = new RegisterViewModel
+            {
+                RolesList = new List<SelectListItem>()
+            };
+
+            List<String> roles = _userRoleManager.Roles.Select(x => x.Name).ToList();
+
+            foreach (string item in roles)
+            {
+                model.RolesList.Add(new SelectListItem { Text = item, Value = item});
+            }
+            return View(model);
         }
 
         [HttpPost]
@@ -226,7 +242,9 @@ namespace TestePrazo.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuário criou uma conta com senha.");
-                    await _userManager.AddToRoleAsync(user, "usuarioBasico");
+
+
+                    await _userManager.AddToRoleAsync(user, model.Roles);
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);

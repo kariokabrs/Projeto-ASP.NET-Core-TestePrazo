@@ -143,8 +143,7 @@ namespace TestePrazo.Controllers
 
             if (saveChangesError.GetValueOrDefault())
             {
-                ViewData["ErrorMessage"] =
-                    "Não foi possível deletar. Contate o administrador.";
+                ViewData["ErrorMessage"] = "Não foi possível deletar. Contate o administrador.";
             }
 
             return View(retorno);
