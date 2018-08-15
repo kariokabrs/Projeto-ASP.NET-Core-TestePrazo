@@ -12,7 +12,7 @@
 * Strongly Typed;
 * DTO´s;
 * Uso do Identity 2.0;
-* Linguagem C#;
+* Linguagem C# 7.0;
 * Pattern Dependency Injection;
 * Uso de Bind como parâmetro dos métodos do Controller para evitar Over-posting;
 * Uso de Html Helpers;
