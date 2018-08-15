@@ -5,15 +5,15 @@
 
 * Tempo de realização do Projeto: 1 dia;
 * Uso do Visual Studio Enterprise 2017;
-* Versão CORE 2.0
+* Versão CORE 2.0.6
 * Pattern MVVM;
 * Separation of Concerns;
 * Pattern Async Task;
 * Strongly Typed;
 * DTO´s;
-* Uso do Identity 3.0.
+* Uso do Identity 2.0;
 * Linguagem C#;
-* Dependency Injection pattern;
+* Pattern Dependency Injection;
 * Uso de Bind como parâmetro dos métodos do Controller para evitar Over-posting;
 * Uso de Html Helpers;
 * Uso de Tag Helpers;
